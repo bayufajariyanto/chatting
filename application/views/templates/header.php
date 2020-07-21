@@ -22,12 +22,13 @@
          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home</a>
+                  <a class="nav-link" href="<?= base_url('kasir'); ?>">Home</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="<?= base_url('kasir/chat'); ?>">Chat</a>
                </li>
             </ul>
+            <a href="<?= base_url('auth/logout'); ?>" class="btn btn-info ml-auto">Logout</a>
          </div>
       </div>
    </nav>

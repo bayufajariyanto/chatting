@@ -10,7 +10,7 @@ class Kasir extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 			$data['title'] = 'Kasir';
-			$data['barang'] = $this->db->get('barang')->result_array();
+			$data['barang'] = $this->db->get_where('barang', ['username' => $this->session->userdata('username')])->result_array();
 			$this->load->view('templates/header', $data);
 			$this->load->view('kasir/index');
 			$this->load->view('templates/footer');
@@ -24,6 +24,7 @@ class Kasir extends CI_Controller
 		$nama = $this->input->post('nama');
 		$stok = $this->input->post('stok');
 		$data = [
+			'username' => $this->session->userdata('username'),
 			'nama' => $nama,
 			'stok' => $stok
 		];
@@ -66,6 +67,23 @@ class Kasir extends CI_Controller
 			redirect('kasir');
 		}
 	}
+
+	public function simpan_chat(){
+		$pesan = $this->input->post('pesan');
+		$username = $this->input->post('username');
+		$data = [
+			'username' => $username,
+			'pesan' => $pesan
+		];
+		$data = $this->db->insert('chat', $data);
+		echo json_encode($data);
+	}
+
+	public function tampil_chat(){
+		$data=$this->db->get('chat')->result();
+        echo json_encode($data);
+	}
+	// var_dump($data);die;
 	
 	public function chat(){
 		$data['title'] = 'Kasir';

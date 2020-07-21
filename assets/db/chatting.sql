@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Jul 2020 pada 09.44
+-- Waktu pembuatan: 21 Jul 2020 pada 11.14
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.3
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `barang` (
   `id` int(11) NOT NULL,
+  `username` varchar(256) NOT NULL,
   `nama` varchar(256) NOT NULL,
   `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -38,8 +39,29 @@ CREATE TABLE `barang` (
 -- Dumping data untuk tabel `barang`
 --
 
-INSERT INTO `barang` (`id`, `nama`, `stok`) VALUES
-(1, 'Barang 1', 2);
+INSERT INTO `barang` (`id`, `username`, `nama`, `stok`) VALUES
+(1, 'kasirsatu', 'Barang 2', 1),
+(4, 'kasirsatu', 'Barang 2', 1),
+(5, 'kasirdua', 'Barang Baru', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `chat`
+--
+
+CREATE TABLE `chat` (
+  `id` int(11) NOT NULL,
+  `username` varchar(256) NOT NULL,
+  `pesan` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `chat`
+--
+
+INSERT INTO `chat` (`id`, `username`, `pesan`) VALUES
+(1, 'pemilik', 'Coba1');
 
 -- --------------------------------------------------------
 
@@ -75,6 +97,12 @@ ALTER TABLE `barang`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
@@ -88,7 +116,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

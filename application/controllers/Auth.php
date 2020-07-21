@@ -25,9 +25,14 @@ class Auth extends CI_Controller
 
 		if ($user) {
 			if ($password == $user['password']) {
+				if($user['username'] == 'pemilik'){
+					$hak_akses = 1;
+				}else{
+					$hak_akses = 2;
+				}
 				$data = [
-					'username' => $user['username'],
-					'hak_akses' => $user['hak_akses']
+					'username' => $username,
+					'hak_akses' => $hak_akses
 				];
 				$this->session->set_userdata($data);
 				if ($user['hak_akses'] == 1) {
@@ -44,4 +49,11 @@ class Auth extends CI_Controller
 			redirect('auth');
 		}
 	}
+
+	public function logout(){
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('hak_akses');
+        $this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">Kamu telah logout!</div>');
+        redirect('auth');
+    }
 }
